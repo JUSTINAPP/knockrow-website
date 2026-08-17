@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Brand colours — PLACEHOLDERS. Swap these for Knockrow's real brand palette
+     as soon as Matt/Jonas confirm it. Roughly seeded from the existing product
+     labels (amber spirit tone, the Maca Da Mia coral/yellow, the Vodka blue). */
+  --color-ink: #1C1A17;
+  --color-ink-soft: #6B6459;
+  --color-cream: #FAF7F2;
+  --color-sand: #F0EAE0;
+  --color-amber: #C9A24B;
+  --color-amber-dark: #A6813A;
+  --color-coral: #E2836F;
+  --color-sky: #7EC8E3;
+
+  /* Fonts — placeholder pairing matching the Volpino build's voice
+     (serif italic display + light tracked sans). Swap for Knockrow's
+     actual brand fonts if they have them. */
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+}
+
+body {
+  font-family: var(--font-sans), sans-serif;
+  font-weight: 300;
+  background-color: #FAF7F2;
+  color: #1C1A17;
+  overflow-x: hidden;
+}
+
+/* Hides scrollbar while the age gate is locking body scroll */
+.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* Slow, subtle zoom used behind the age gate / static hero fallback image */
+@keyframes slow-zoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.06); }
+}
+.animate-slow-zoom {
+  animation: slow-zoom 20s ease-out forwards;
+}
