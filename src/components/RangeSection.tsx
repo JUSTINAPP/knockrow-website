@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import { products } from '@/data/products'
 
-// NEEDS FROM YOU: real product photography at the paths listed in
-// src/data/products.ts (public/images/products/*.jpg). Using the two bottle
-// shots you already sent me as a starting point is fine for now.
+// Product photography lives at the paths listed in src/data/products.ts
+// (public/images/products/*.png). Cards with a caseImage crossfade to the
+// 6-pack shot on hover/focus.
 export default function RangeSection() {
   return (
     <section id="range" className="bg-cream py-[56px] md:py-[80px]">
@@ -17,15 +17,26 @@ export default function RangeSection() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {products.map((p) => (
-            <div key={p.slug} className="group">
+            <div key={p.slug} className="group" tabIndex={p.caseImage ? 0 : undefined}>
               <div className="relative aspect-[3/4] bg-sand rounded-[6px] overflow-hidden mb-4">
                 <Image
                   src={p.image}
                   alt={p.name}
                   fill
-                  className="object-contain p-6 transition-transform duration-300 group-hover:scale-[1.03]"
+                  className={`object-contain p-6 transition-opacity duration-300 ${
+                    p.caseImage ? 'group-hover:opacity-0 group-focus-within:opacity-0' : ''
+                  }`}
                   sizes="(max-width: 768px) 100vw, 400px"
                 />
+                {p.caseImage && (
+                  <Image
+                    src={p.caseImage}
+                    alt={`${p.name} — full case of 6`}
+                    fill
+                    className="object-contain p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100"
+                    sizes="(max-width: 768px) 100vw, 400px"
+                  />
+                )}
                 {p.soldOut && (
                   <span className="absolute top-3 right-3 bg-ink/85 text-cream text-[9px] tracking-[0.12em] uppercase font-sans px-[10px] py-[5px] rounded-[3px]">
                     Sold Out

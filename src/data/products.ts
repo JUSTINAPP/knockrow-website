@@ -10,6 +10,8 @@ export type Product = {
   price: string
   size: string
   image: string
+  /** Optional second shot (e.g. the full 6-pack) — RangeSection crossfades to this on hover. */
+  caseImage?: string
   soldOut: boolean
 }
 
@@ -22,7 +24,8 @@ export const products: Product[] = [
       'Our signature vodka — distilled and filtered for a clean, smooth finish that holds its own against the top shelf.',
     price: '$390.00',
     size: '6 x 700ml case',
-    image: '/images/products/vodka.png',
+    image: '/images/products/vodka-de1.png',
+    caseImage: '/images/products/vodka-six.png',
     soldOut: true,
   },
   {
@@ -33,7 +36,8 @@ export const products: Product[] = [
       'A beautiful macadamia-infused vodka — warm, nutty and smooth. Built for sipping neat or shaking into a Maca Martini.',
     price: '$540.00',
     size: '6 x 700ml case',
-    image: '/images/products/maca-da-mia.png',
+    image: '/images/products/macadamia.png',
+    caseImage: '/images/products/macadamia-six.png',
     soldOut: true,
   },
   {
@@ -44,7 +48,7 @@ export const products: Product[] = [
       'The introductory bundle: three Vodka and three Maca Da Mia, side by side, so you can taste the whole range.',
     price: '$465.00',
     size: '3 x Vodka + 3 x Maca Da Mia (6 x 700ml)',
-    image: '/images/products/mixed-case.jpg',
+    image: '/images/products/mixed-case.png',
     soldOut: true,
   },
 ]
