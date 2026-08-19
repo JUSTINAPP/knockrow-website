@@ -31,7 +31,7 @@ export default function RangeSection() {
                 {p.caseImage && (
                   <Image
                     src={p.caseImage}
-                    alt={`${p.name} — full case of 6`}
+                    alt={`${p.name}, full case of 6`}
                     fill
                     className="object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100"
                     sizes="(max-width: 768px) 100vw, 400px"

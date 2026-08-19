@@ -21,7 +21,7 @@ export const products: Product[] = [
     name: 'Vodka',
     tagline: 'Very smooth, very clean, dangerously easy to drink.',
     description:
-      'Our signature vodka — distilled and filtered for a clean, smooth finish that holds its own against the top shelf.',
+      'Our signature vodka, distilled and filtered for a clean, smooth finish that holds its own against the top shelf.',
     price: '$390.00',
     size: '6 x 700ml case',
     image: '/images/products/vodka-de1.png',
@@ -33,7 +33,7 @@ export const products: Product[] = [
     name: 'Maca Da Mia',
     tagline: 'Drink neat, on the rocks, or a specialty Maca Martini.',
     description:
-      'A beautiful macadamia-infused vodka — warm, nutty and smooth. Built for sipping neat or shaking into a Maca Martini.',
+      'A beautiful macadamia-infused vodka. Warm, nutty and smooth. Built for sipping neat or shaking into a Maca Martini.',
     price: '$540.00',
     size: '6 x 700ml case',
     image: '/images/products/macadamia.png',
@@ -43,7 +43,7 @@ export const products: Product[] = [
   {
     slug: 'twin-pack',
     name: 'Knockrow Mixed Case',
-    tagline: 'Clean and very smooth — the full range in one case.',
+    tagline: 'Clean and very smooth. The full range in one case.',
     description:
       'The introductory bundle: three Vodka and three Maca Da Mia, side by side, so you can taste the whole range.',
     price: '$465.00',

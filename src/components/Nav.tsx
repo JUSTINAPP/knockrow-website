@@ -29,7 +29,7 @@ export default function Nav({ overHero = false }: { overHero?: boolean }) {
         <div className="max-w-7xl mx-auto px-[22px] md:px-10 h-[62px] md:h-[68px] flex items-center justify-between">
           <Link
             href="/"
-            aria-label="Knockrow Distillers — home"
+            aria-label="Knockrow Distillers home"
             onClick={() => setOpen(false)}
             className="transition-opacity duration-150"
             style={{ opacity: overHero ? progress : 1 }}
