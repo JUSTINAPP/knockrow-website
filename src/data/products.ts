@@ -21,7 +21,7 @@ export const products: Product[] = [
     name: 'Vodka',
     tagline: 'Very smooth, very clean, dangerously easy to drink.',
     description:
-      'Our signature vodka, distilled and filtered for a clean, smooth finish that holds its own against the top shelf.',
+      'Our signature vodka. The hearts cut by taste rather than a fixed point on the proof chart, filtered just enough to stay clean without stripping it flat. No burn on the way down, real weight in the glass.',
     price: '$390.00',
     size: '6 x 700ml case',
     image: '/images/products/vodka-de1.png',
@@ -33,7 +33,7 @@ export const products: Product[] = [
     name: 'Maca Da Mia',
     tagline: 'Drink neat, on the rocks, or a specialty Maca Martini.',
     description:
-      'A beautiful macadamia-infused vodka. Warm, nutty and smooth. Built for sipping neat or shaking into a Maca Martini.',
+      'A beautiful macadamia-infused vodka, the flavour drawn from steeping whole macadamias rather than an essence. Warm, nutty and smooth. Built for sipping neat or shaking into a Maca Martini.',
     price: '$540.00',
     size: '6 x 700ml case',
     image: '/images/products/macadamia.png',

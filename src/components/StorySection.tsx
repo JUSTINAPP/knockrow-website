@@ -39,8 +39,10 @@ export default function StorySection() {
               <p>
                 So this isn&apos;t a heritage brand with a founding myth. It&apos;s a small batch
                 of very clean vodka, one version of it steeped in local macadamias, made without
-                much ceremony by people who live five minutes from where the nuts are grown.
-                Drink it however you like. We&apos;re not precious about that either.
+                much ceremony by people who live five minutes from where the nuts are grown. The
+                cuts are made by taste, not by a fixed point on a proof chart, and the macadamia
+                flavour comes from steeping whole nuts, not an essence. Drink it however you
+                like. We&apos;re not precious about that either.
               </p>
             </div>
           </div>
