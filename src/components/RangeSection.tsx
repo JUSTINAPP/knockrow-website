@@ -23,7 +23,7 @@ export default function RangeSection() {
                   src={p.image}
                   alt={p.name}
                   fill
-                  className={`object-contain p-6 transition-opacity duration-300 ${
+                  className={`object-cover transition-opacity duration-300 ${
                     p.caseImage ? 'group-hover:opacity-0 group-focus-within:opacity-0' : ''
                   }`}
                   sizes="(max-width: 768px) 100vw, 400px"
@@ -33,7 +33,7 @@ export default function RangeSection() {
                     src={p.caseImage}
                     alt={`${p.name} — full case of 6`}
                     fill
-                    className="object-contain p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100"
+                    className="object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100"
                     sizes="(max-width: 768px) 100vw, 400px"
                   />
                 )}
