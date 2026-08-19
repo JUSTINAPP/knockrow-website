@@ -49,6 +49,7 @@ export const products: Product[] = [
     price: '$465.00',
     size: '3 x Vodka + 3 x Maca Da Mia (6 x 700ml)',
     image: '/images/products/mixed-case.png',
+    caseImage: '/images/products/mixed-case-six.png',
     soldOut: true,
   },
 ]
