@@ -39,28 +39,35 @@ network-blocked there) — run it locally once, it should just work.
 - Did not touch your GitHub repo (JUSTINAPP/knockrow-website) — these files are sitting in the
   `knockrow-website` folder on your Desktop, not pushed anywhere yet.
 
+## Done since the initial scaffold
+- **Hero video** — your "knockrow distillers transitions 1.mov" is in. It was re-encoded from
+  .mov to a standard web `.mp4` (H.264, audio stripped since the hero video is muted anyway) at
+  `public/videos/hero.mp4` — most browsers won't reliably play QuickTime .mov files, so this
+  conversion was needed, not optional polish. `public/images/hero-poster.jpg` is a frame pulled
+  from the same clip, used while the video loads.
+- **Real logo** — `Logo.tsx` now renders your actual wordmark instead of placeholder text. Your
+  source files (`knockrow-logo.png`, `knockrow_logo_transparent_highres.png`) were opaque/black
+  only, so I cut proper white-on-transparent and black-on-transparent versions
+  (`public/images/knockrow-logo-{white,black}.png` for the wordmark used in the nav/footer/hero,
+  `public/images/knockrow-icon-{white,black}.png` for the icon+wordmark lockup used as the
+  favicon). The hero now shows the white wordmark floating over the video, per your note.
+- Product photography (previous update) and the two items above are done — remaining gaps below.
+
 ## Still needed from you / Matt before this looks real
-1. **Hero video** — drop the file at `public/videos/hero.mp4`, plus a still frame at
-   `public/images/hero-poster.jpg` for the loading fallback.
-2. **Real logo** — ideally an SVG (like Volpino's `src/components/Logo.tsx`). Right now
-   `Logo.tsx` renders a plain text placeholder wordmark.
-3. **Brand colours & fonts** — I seeded a placeholder palette loosely off the two product labels
+1. **Brand colours & fonts** — I seeded a placeholder palette loosely off the two product labels
    (warm amber, the Maca Da Mia coral/yellow, the Vodka blue) in `src/app/globals.css`. Swap
    these for the real brand palette whenever you have one — everything references the theme
    tokens, not hardcoded hex, so it's a one-file change.
-4. **Product photography** — I used the macadamia bottle photo and the relit vodka shot from
-   earlier in our conversation as placeholders (`public/images/products/`). No image exists yet
-   for the Mixed Case product.
-5. **Area / location photography** — 3–5 shots for the "The Area" section
+2. **Area / location photography** — 3–5 shots for the "The Area" section
    (`public/images/area/`), currently pointing at files that don't exist.
-6. **Story copy** — the current site has no About/story text at all. A couple of paragraphs on
+3. **Story copy** — the current site has no About/story text at all. A couple of paragraphs on
    who Knockrow is and what makes the spirits worth talking about.
-7. **Contact details** — no email, phone, address or social links are published on the current
+4. **Contact details** — no email, phone, address or social links are published on the current
    site. Needed for the footer and enquiry page.
-8. **Enquiry form delivery** — the form currently just shows a placeholder message on submit.
+5. **Enquiry form delivery** — the form currently just shows a placeholder message on submit.
    Volpino sends its forms through Resend (`volpino/src/app/actions/contact.ts` is the pattern
    to copy); wiring this up needs a Resend API key (or whichever provider you'd rather use).
-9. **Domain** — confirm knockrow.com is what points at the new Vercel deployment once it's ready
+6. **Domain** — confirm knockrow.com is what points at the new Vercel deployment once it's ready
    to go live, and when Matt wants that cutover to happen.
 
 ## Next steps to get this live

@@ -28,6 +28,17 @@ export const metadata: Metadata = {
   },
   description: 'Small batch spirits, distilled on the coast.',
   metadataBase: new URL('https://www.knockrow.com'),
+  icons: {
+    icon: [{ url: '/images/knockrow-icon-black.png', type: 'image/png' }],
+    apple: [{ url: '/images/knockrow-icon-black.png' }],
+    shortcut: '/images/knockrow-icon-black.png',
+  },
+  openGraph: {
+    siteName: 'Knockrow Distillers',
+    images: [{ url: '/images/hero-poster.jpg', width: 1920, height: 1080 }],
+    locale: 'en_AU',
+    type: 'website',
+  },
 }
 
 export default function RootLayout({

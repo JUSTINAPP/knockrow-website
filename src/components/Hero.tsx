@@ -8,9 +8,10 @@ import { useHeroFade } from '@/lib/useHeroFade'
 // utility nav in Nav.tsx fades in at the same rate so there's always
 // exactly one logo on screen, never both/neither.
 //
-// NEEDS FROM YOU: drop the real hero video at public/videos/hero.mp4
-// (and a poster frame at public/images/hero-poster.jpg for the instant
-// the video loads and as the mobile-data fallback).
+// public/videos/hero.mp4 is your "transitions 1" clip, converted from .mov
+// (H.264/AAC won't reliably play as .mov across browsers, so it's been
+// re-encoded to a standard web .mp4, audio stripped since it's muted anyway).
+// public/images/hero-poster.jpg is a frame pulled from that same video.
 export default function Hero() {
   const progress = useHeroFade()
   const logoOpacity = 1 - progress
