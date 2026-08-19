@@ -5,7 +5,7 @@ const footerLinks = [
   { href: '/#range', label: 'Range' },
   { href: '/#story', label: 'Our Story' },
   { href: '/#area', label: 'The Area' },
-  { href: '/pages/enquire', label: 'Enquire' },
+  { href: '/enquire', label: 'Enquire' },
 ]
 
 // Styled to match the Volpino footer (dark band, logo + tagline, link grid,
@@ -49,7 +49,7 @@ export default function Footer() {
           <p className="text-[11px] text-cream/25 font-sans font-light leading-[1.7]">
             {/* TODO: replace with Knockrow's real address / phone / email — not published on current site */}
             Knockrow Distillers ·{' '}
-            <Link href="/pages/enquire" className="hover:text-cream/45 transition-colors">
+            <Link href="/enquire" className="hover:text-cream/45 transition-colors">
               Enquire
             </Link>
             <br />© {new Date().getFullYear()} Knockrow Distillers. All rights reserved.

@@ -9,12 +9,12 @@ const links = [
   { href: '/#range', label: 'Range' },
   { href: '/#story', label: 'Our Story' },
   { href: '/#area', label: 'The Area' },
-  { href: '/pages/enquire', label: 'Enquire' },
+  { href: '/enquire', label: 'Enquire' },
 ]
 
 // Slim utility bar, transparent over the hero and solidifying (dark bg +
 // small logo fading in) as the big floating hero logo fades out. On pages
-// without a Hero (e.g. /pages/enquire) it just renders solid from the start.
+// without a Hero (e.g. /enquire) it just renders solid from the start.
 export default function Nav({ overHero = false }: { overHero?: boolean }) {
   const [open, setOpen] = useState(false)
   const heroProgress = useHeroFade()
