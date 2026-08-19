@@ -1,13 +1,12 @@
 import Image from 'next/image'
 
-// NEEDS FROM YOU: photos of the area/distillery — drop 3–5 landscape shots
-// at public/images/area/*.jpg and list them below. Placeholders point at
-// files that don't exist yet, so this section will show broken images
-// until real photos are added.
+// Placeholder set — Jonas's real shots of the Knockrow area, dropped in as a
+// starting point. Swap/reorder any time; nothing else needs to change.
 const areaImages = [
-  '/images/area/area-1.jpg',
-  '/images/area/area-2.jpg',
-  '/images/area/area-3.jpg',
+  { src: '/images/area/duck-creek-macadamias.jpg', alt: 'An old fig tree above the macadamia rows at Duck Creek' },
+  { src: '/images/area/macadamia-tree-alley.jpg', alt: 'A row of macadamia trees, Duck Creek' },
+  { src: '/images/area/macadamias-at-duck-creek.jpg', alt: 'Macadamias still on the tree, not long before harvest' },
+  { src: '/images/area/photo0jpg.jpg', alt: 'A swimming hole in the hinterland behind Knockrow' },
 ]
 
 export default function AreaSection() {
@@ -21,10 +20,16 @@ export default function AreaSection() {
           The area
         </h2>
 
-        <div className="grid sm:grid-cols-3 gap-4">
-          {areaImages.map((src) => (
-            <div key={src} className="relative aspect-[4/5] rounded-[6px] overflow-hidden bg-cream/5">
-              <Image src={src} alt="" fill className="object-cover" sizes="(max-width: 768px) 100vw, 33vw" />
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {areaImages.map((img) => (
+            <div key={img.src} className="relative aspect-[4/5] rounded-[6px] overflow-hidden bg-cream/5">
+              <Image
+                src={img.src}
+                alt={img.alt}
+                fill
+                className="object-cover"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+              />
             </div>
           ))}
         </div>

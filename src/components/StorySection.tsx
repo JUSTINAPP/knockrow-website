@@ -1,7 +1,9 @@
-// NEEDS FROM YOU: the current knockrow.com has no About/story copy at all —
-// this section is a structural placeholder. Send through 2-3 paragraphs on
-// Knockrow's story (who, where, why, how it's made) and I'll drop it straight
-// in here.
+// Draft copy — a starting point built from what's actually true about Knockrow
+// (the real NSW locality, not a marketing invention): it's a speck on the
+// Pacific Highway between Ballina and Byron Bay, pop. ~190, better known for
+// the macadamia tourist stop up the road than for anything else. Deliberately
+// avoids the usual "nestled in the rolling hinterland" provenance script —
+// Matt should treat this as a rough draft to sand down or replace outright.
 export default function StorySection() {
   return (
     <section id="story" className="bg-white py-[56px] md:py-[80px]">
@@ -10,14 +12,29 @@ export default function StorySection() {
           Our Story
         </p>
         <h2 className="font-display font-light text-[34px] md:text-[44px] text-ink leading-[1.1] mb-5 tracking-[0.01em]">
-          [Placeholder — real story copy needed]
+          Population: about 190
         </h2>
-        <p className="text-[14px] leading-[1.8] text-ink-soft font-sans font-light max-w-2xl">
-          Placeholder text: a couple of paragraphs on who Knockrow is, where the distillery is
-          based, and what makes the spirits worth talking about. Replace this with the real
-          story once Matt sends it through — everything else on the page is already wired up
-          to sit around it.
-        </p>
+        <div className="text-[14px] leading-[1.8] text-ink-soft font-sans font-light max-w-2xl space-y-5">
+          <p>
+            Knockrow isn&apos;t a place most people have heard of, and if they have, it&apos;s
+            probably because of the macadamia tourist stop up the road, not us. It&apos;s a bend
+            in the highway between Ballina and Byron Bay — a couple of hundred people, a lot of
+            macadamia trees, and, as of recently, a shed that makes vodka.
+          </p>
+          <p>
+            We could talk about ancient soil and coastal microclimates and the particular quality
+            of light through a macadamia canopy down at Duck Creek. All of it&apos;s true. None
+            of it&apos;s really the point. The point is that good macadamias grow here, and
+            someone eventually worked out what to do with the ones that don&apos;t make the cut
+            for eating.
+          </p>
+          <p>
+            So this isn&apos;t a heritage brand with a founding myth. It&apos;s a small batch of
+            very clean vodka — one version of it steeped in local macadamias — made without much
+            ceremony by people who live five minutes from where the nuts are grown. Drink it
+            however you like. We&apos;re not precious about that either.
+          </p>
+        </div>
       </div>
     </section>
   )
