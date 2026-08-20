@@ -11,7 +11,9 @@ export type DisplayProduct = {
   price: string
   priceCents: number
   size: string
+  hasSingleBottleTier: boolean
   image: string
+  twoBottleImage?: string
   caseImage?: string
   soldOut: boolean
 }
@@ -27,7 +29,11 @@ export async function getDisplayProducts(): Promise<DisplayProduct[]> {
       price: p.price,
       priceCents: p.priceCents,
       size: p.size,
+      hasSingleBottleTier: p.hasSingleBottleTier,
       image: urlForImage(p.image).width(1200).height(1600).fit('crop').url(),
+      twoBottleImage: p.twoBottleImage
+        ? urlForImage(p.twoBottleImage).width(1200).height(1600).fit('crop').url()
+        : undefined,
       caseImage: p.caseImage
         ? urlForImage(p.caseImage).width(1200).height(1600).fit('crop').url()
         : undefined,

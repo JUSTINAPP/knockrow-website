@@ -14,8 +14,13 @@ export type Product = {
   /** Price in cents (AUD) — what the Stripe checkout session actually charges. */
   priceCents: number
   size: string
+  /** Whether this product offers a "1 Bottle" tier at all — false for the Mixed Case, which only comes in 2 or 6. */
+  hasSingleBottleTier: boolean
+  /** Shown for the "1 Bottle" tier (only relevant if hasSingleBottleTier is true). */
   image: string
-  /** Optional second shot (e.g. the full 6-pack) — RangeSection crossfades to this on hover. */
+  /** Shown for the "2 Bottles" tier. Undefined shows a grey placeholder box until a real photo exists. */
+  twoBottleImage?: string
+  /** Shown for the "6 Bottle Case" tier — the only tier that's actually priced/buyable right now. */
   caseImage?: string
   soldOut: boolean
 }
@@ -30,7 +35,10 @@ export const products: Product[] = [
     price: '$540.00',
     priceCents: 54000,
     size: '6 x 700ml case',
+    hasSingleBottleTier: true,
     image: '/images/products/macadamia.png',
+    // NEEDS FROM YOU: a "2 bottles" photo — shows a grey placeholder until then.
+    twoBottleImage: undefined,
     caseImage: '/images/products/macadamia-six.png',
     soldOut: true,
   },
@@ -43,7 +51,10 @@ export const products: Product[] = [
     price: '$390.00',
     priceCents: 39000,
     size: '6 x 700ml case',
+    hasSingleBottleTier: true,
     image: '/images/products/vodka-de1.png',
+    // NEEDS FROM YOU: a "2 bottles" photo — shows a grey placeholder until then.
+    twoBottleImage: undefined,
     caseImage: '/images/products/vodka-six.png',
     soldOut: true,
   },
@@ -56,6 +67,9 @@ export const products: Product[] = [
     price: '$465.00',
     priceCents: 46500,
     size: '3 x Vodka + 3 x Maca Da Mia (6 x 700ml)',
+    // No single-bottle tier for the mixed case — it only ever comes as a pair or a full case.
+    hasSingleBottleTier: false,
+    // The existing default shot already shows one of each bottle, so it doubles as the "2 Bottles" image.
     image: '/images/products/mixed-case.png',
     caseImage: '/images/products/mixed-case-six.png',
     soldOut: true,

@@ -39,7 +39,9 @@ export type SanityProduct = {
   price: string
   priceCents: number
   size: string
+  hasSingleBottleTier: boolean
   image: SanityImage
+  twoBottleImage?: SanityImage
   caseImage?: SanityImage
   soldOut: boolean
   order: number
@@ -58,7 +60,9 @@ export async function getSanityProducts(): Promise<SanityProduct[] | null> {
         price,
         priceCents,
         size,
+        hasSingleBottleTier,
         image,
+        twoBottleImage,
         caseImage,
         soldOut,
         order

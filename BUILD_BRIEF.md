@@ -87,19 +87,30 @@ turned down.
 
 **What's built, structurally, but not yet switched on:**
 - **Sanity** — schema for a `product` document type at `sanity/schemaTypes/product.ts` (name,
-  slug, tagline, description, price, priceCents, size, image, caseImage, soldOut, order). Studio
-  lives at `/studio` once connected. `src/lib/sanity.ts` fetches products from Sanity *if*
-  `NEXT_PUBLIC_SANITY_PROJECT_ID` is set, otherwise returns `null` and the site falls back to the
-  static catalogue in `src/data/products.ts` — nothing breaks either way.
+  slug, tagline, description, price, priceCents, size, hasSingleBottleTier, image,
+  twoBottleImage, caseImage, soldOut, order). Studio lives at `/studio` once connected.
+  `src/lib/sanity.ts` fetches products from Sanity *if* `NEXT_PUBLIC_SANITY_PROJECT_ID` is set,
+  otherwise returns `null` and the site falls back to the static catalogue in
+  `src/data/products.ts` — nothing breaks either way.
 - **Stripe** — `src/app/api/checkout/route.ts` creates a Checkout Session for a product's
   6-bottle case (the only tier that's real right now) using inline pricing, no Stripe Dashboard
   setup required beyond the account + API key. `src/components/ProductCard.tsx` has a working
   "Buy Now" button that calls it. Success/cancel land on `/checkout/success` and
   `/checkout/cancel`. Until `STRIPE_SECRET_KEY` is set, clicking Buy Now shows "Stripe is not
   configured yet" instead of erroring.
-- 1 & 2 bottle quantities are still hardcoded as unavailable in `ProductCard.tsx` — that's
-  presentation only, not driven by Sanity stock yet. Worth revisiting once single bottles are
-  actually for sale (could become a `quantityTiers` array on the Sanity product schema).
+- **Per-tier product photos** — the quantity dropdown now drives which photo shows: the "1
+  Bottle" image, a "2 Bottles" image (grey "Photo coming soon" box until one exists, since
+  neither Vodka nor Maca Da Mia has one yet), or the "6 Bottle Case" image. The Mixed Case has no
+  single-bottle tier (`hasSingleBottleTier: false` on that product), so its dropdown only offers
+  2 Bottles (using its existing default photo, which already shows one of each bottle) and 6
+  Bottle Case. 1 & 2 bottle quantities are still hardcoded as unavailable/unbuyable in
+  `ProductCard.tsx` — that's presentation only, not driven by real stock or pricing yet. Worth
+  revisiting once single/double bottles actually have prices.
+- Removed the old hover-to-reveal-the-case-photo behaviour entirely — it lived in the same card
+  as the quantity dropdown, so opening the dropdown counted as "hovering" and the photo would get
+  stuck on the case shot regardless of the selected quantity. That's what looked like a slow or
+  broken dropdown; it wasn't actually a state bug, the two mechanisms were just fighting each
+  other over the same image.
 
 **What you (Jonas/Matt) need to do — I can't do these for you:**
 1. **Sanity**: run `npx sanity init` in this folder. It'll prompt a login and let you create a

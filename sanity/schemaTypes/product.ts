@@ -58,18 +58,35 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'hasSingleBottleTier',
+      title: 'Has a "1 Bottle" tier',
+      type: 'boolean',
+      initialValue: true,
+      description:
+        'Turn off for products (like the Mixed Case) that only ever come as a pair or a full case, never a single bottle.',
+    }),
+    defineField({
       name: 'image',
-      title: 'Primary image',
+      title: '"1 Bottle" image',
       type: 'image',
       options: { hotspot: true },
+      description:
+        'Shown for the "1 Bottle" quantity tier (or as the default photo, for products with no single-bottle tier).',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'caseImage',
-      title: 'Hover / case image',
+      name: 'twoBottleImage',
+      title: '"2 Bottles" image',
       type: 'image',
       options: { hotspot: true },
-      description: 'Optional — shown on hover/focus (e.g. the full 6-pack shot).',
+      description: 'Shown for the "2 Bottles" tier. Leave empty to show a grey placeholder for now.',
+    }),
+    defineField({
+      name: 'caseImage',
+      title: '"6 Bottle Case" image',
+      type: 'image',
+      options: { hotspot: true },
+      description: 'Shown for the "6 Bottle Case" tier, the only tier that is actually priced and buyable right now.',
     }),
     defineField({
       name: 'soldOut',
