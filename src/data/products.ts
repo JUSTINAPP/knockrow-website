@@ -37,8 +37,7 @@ export const products: Product[] = [
     size: '6 x 700ml case',
     hasSingleBottleTier: true,
     image: '/images/products/macadamia.png',
-    // NEEDS FROM YOU: a "2 bottles" photo — shows a grey placeholder until then.
-    twoBottleImage: undefined,
+    twoBottleImage: '/images/products/macadamia-two.png',
     caseImage: '/images/products/macadamia-six.png',
     soldOut: true,
   },
@@ -53,8 +52,7 @@ export const products: Product[] = [
     size: '6 x 700ml case',
     hasSingleBottleTier: true,
     image: '/images/products/vodka-de1.png',
-    // NEEDS FROM YOU: a "2 bottles" photo — shows a grey placeholder until then.
-    twoBottleImage: undefined,
+    twoBottleImage: '/images/products/vodka-two.png',
     caseImage: '/images/products/vodka-six.png',
     soldOut: true,
   },
