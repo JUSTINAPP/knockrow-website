@@ -2,9 +2,11 @@ import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   images: {
-    // Add remote hosts here if product/hero images end up served from a CMS or CDN
-    // instead of the local /public folder — same pattern Volpino uses for Sanity.
-    remotePatterns: [],
+    remotePatterns: [
+      // Sanity's image CDN — used once a real Sanity project is connected
+      // (see src/lib/sanity.ts). Harmless to leave in even before that.
+      { protocol: 'https', hostname: 'cdn.sanity.io' },
+    ],
   },
 }
 

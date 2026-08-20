@@ -1,10 +1,22 @@
-import Image from 'next/image'
-import { products } from '@/data/products'
+import { getDisplayProducts } from '@/lib/products'
+import ProductCard from './ProductCard'
 
-// Product photography lives at the paths listed in src/data/products.ts
-// (public/images/products/*.png). Cards with a caseImage crossfade to the
-// 6-pack shot on hover/focus.
-export default function RangeSection() {
+// Products come from Sanity when it's connected (NEXT_PUBLIC_SANITY_PROJECT_ID
+// set — see src/lib/sanity.ts), otherwise from the static catalogue in
+// src/data/products.ts. Either way this component doesn't need to know which;
+// getDisplayProducts() in src/lib/products.ts handles the fallback. Display
+// order is driven by the `order` field in Sanity, or array order in the
+// static file (currently Maca Da Mia first, Vodka second, per client
+// feedback).
+//
+// Ecommerce next steps (per client feedback): the quantity dropdown in
+// ProductCard.tsx is still presentation-only for the 1/2 bottle tiers, but
+// the 6-bottle case now has a real "Buy" button wired to /api/checkout
+// (Stripe). It won't actually charge anything until STRIPE_SECRET_KEY is
+// set — see .env.local.example.
+export default async function RangeSection() {
+  const products = await getDisplayProducts()
+
   return (
     <section id="range" className="bg-cream py-[56px] md:py-[80px]">
       <div className="max-w-7xl mx-auto px-6 md:px-[60px]">
@@ -17,41 +29,7 @@ export default function RangeSection() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {products.map((p) => (
-            <div key={p.slug} className="group" tabIndex={p.caseImage ? 0 : undefined}>
-              <div className="relative aspect-[3/4] bg-sand rounded-[6px] overflow-hidden mb-4">
-                <Image
-                  src={p.image}
-                  alt={p.name}
-                  fill
-                  className={`object-cover transition-opacity duration-300 ${
-                    p.caseImage ? 'group-hover:opacity-0 group-focus-within:opacity-0' : ''
-                  }`}
-                  sizes="(max-width: 768px) 100vw, 400px"
-                />
-                {p.caseImage && (
-                  <Image
-                    src={p.caseImage}
-                    alt={`${p.name}, full case of 6`}
-                    fill
-                    className="object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100"
-                    sizes="(max-width: 768px) 100vw, 400px"
-                  />
-                )}
-                {p.soldOut && (
-                  <span className="absolute top-3 right-3 bg-ink/85 text-cream text-[9px] tracking-[0.12em] uppercase font-sans px-[10px] py-[5px] rounded-[3px]">
-                    Sold Out
-                  </span>
-                )}
-              </div>
-              <h3 className="font-display font-normal text-[22px] text-ink mb-1">{p.name}</h3>
-              <p className="text-[13px] text-ink-soft font-sans font-light leading-[1.6] mb-2">
-                {p.tagline}
-              </p>
-              <div className="flex items-center justify-between">
-                <span className="text-[12px] text-ink-soft font-sans font-light">{p.size}</span>
-                <span className="text-[14px] text-ink font-sans font-normal">{p.price}</span>
-              </div>
-            </div>
+            <ProductCard key={p.slug} product={p} />
           ))}
         </div>
       </div>

@@ -1,6 +1,9 @@
-// Pulled from the live knockrow.com (Shopify) store on 2026-08-17.
-// Update copy/pricing/stock here — this file is the single source of truth
-// for the Range section, no CMS needed for a catalogue this small.
+// Static fallback catalogue. Update copy/pricing/stock here if there's no
+// Sanity project connected yet — see src/lib/sanity.ts and
+// src/components/RangeSection.tsx, which fetch from Sanity first and only
+// fall back to this file when NEXT_PUBLIC_SANITY_PROJECT_ID isn't set (or
+// the fetch fails). Once Sanity's connected, edit products in the Studio
+// at /studio instead — this file stops being read.
 
 export type Product = {
   slug: string
@@ -8,6 +11,8 @@ export type Product = {
   tagline: string
   description: string
   price: string
+  /** Price in cents (AUD) — what the Stripe checkout session actually charges. */
+  priceCents: number
   size: string
   image: string
   /** Optional second shot (e.g. the full 6-pack) — RangeSection crossfades to this on hover. */
@@ -17,27 +22,29 @@ export type Product = {
 
 export const products: Product[] = [
   {
-    slug: 'vodka',
-    name: 'Vodka',
-    tagline: 'Very smooth, very clean, dangerously easy to drink.',
-    description:
-      'Our signature vodka. The hearts cut by taste rather than a fixed point on the proof chart, filtered just enough to stay clean without stripping it flat. No burn on the way down, real weight in the glass.',
-    price: '$390.00',
-    size: '6 x 700ml case',
-    image: '/images/products/vodka-de1.png',
-    caseImage: '/images/products/vodka-six.png',
-    soldOut: true,
-  },
-  {
     slug: 'maca-da-mia',
     name: 'Maca Da Mia',
     tagline: 'Drink neat, on the rocks, or a specialty Maca Martini.',
     description:
       'A beautiful macadamia-infused vodka, the flavour drawn from steeping whole macadamias rather than an essence. Warm, nutty and smooth. Built for sipping neat or shaking into a Maca Martini.',
     price: '$540.00',
+    priceCents: 54000,
     size: '6 x 700ml case',
     image: '/images/products/macadamia.png',
     caseImage: '/images/products/macadamia-six.png',
+    soldOut: true,
+  },
+  {
+    slug: 'vodka',
+    name: 'Vodka',
+    tagline: 'Very smooth, very clean, dangerously easy to drink.',
+    description:
+      'Our signature vodka. The hearts cut by taste rather than a fixed point on the proof chart, filtered just enough to stay clean without stripping it flat. No burn on the way down, real weight in the glass.',
+    price: '$390.00',
+    priceCents: 39000,
+    size: '6 x 700ml case',
+    image: '/images/products/vodka-de1.png',
+    caseImage: '/images/products/vodka-six.png',
     soldOut: true,
   },
   {
@@ -47,6 +54,7 @@ export const products: Product[] = [
     description:
       'The introductory bundle: three Vodka and three Maca Da Mia, side by side, so you can taste the whole range.',
     price: '$465.00',
+    priceCents: 46500,
     size: '3 x Vodka + 3 x Maca Da Mia (6 x 700ml)',
     image: '/images/products/mixed-case.png',
     caseImage: '/images/products/mixed-case-six.png',

@@ -76,3 +76,42 @@ network-blocked there) — run it locally once, it should just work.
    up to slot them in without touching component code.
 3. `git init`, commit, and push to `github.com/JUSTINAPP/knockrow-website`.
 4. Import the repo into Vercel, connect the domain once Matt's happy with a preview.
+
+## Ecommerce (added this update, per client feedback)
+Client feedback: Maca Da Mia now shows first (Vodka second — done in `src/data/products.ts`),
+each product card has a quantity dropdown (1 Bottle / 2 Bottles / 6 Bottle Case — done in
+`src/components/ProductCard.tsx`), and the plan going forward is a **fully custom** ecommerce
+build: Sanity for the product catalogue, Stripe for checkout. Deliberately not Shopify headless,
+even though Matt already has a working Shopify store — that was the other option, weighed and
+turned down.
+
+**What's built, structurally, but not yet switched on:**
+- **Sanity** — schema for a `product` document type at `sanity/schemaTypes/product.ts` (name,
+  slug, tagline, description, price, priceCents, size, image, caseImage, soldOut, order). Studio
+  lives at `/studio` once connected. `src/lib/sanity.ts` fetches products from Sanity *if*
+  `NEXT_PUBLIC_SANITY_PROJECT_ID` is set, otherwise returns `null` and the site falls back to the
+  static catalogue in `src/data/products.ts` — nothing breaks either way.
+- **Stripe** — `src/app/api/checkout/route.ts` creates a Checkout Session for a product's
+  6-bottle case (the only tier that's real right now) using inline pricing, no Stripe Dashboard
+  setup required beyond the account + API key. `src/components/ProductCard.tsx` has a working
+  "Buy Now" button that calls it. Success/cancel land on `/checkout/success` and
+  `/checkout/cancel`. Until `STRIPE_SECRET_KEY` is set, clicking Buy Now shows "Stripe is not
+  configured yet" instead of erroring.
+- 1 & 2 bottle quantities are still hardcoded as unavailable in `ProductCard.tsx` — that's
+  presentation only, not driven by Sanity stock yet. Worth revisiting once single bottles are
+  actually for sale (could become a `quantityTiers` array on the Sanity product schema).
+
+**What you (Jonas/Matt) need to do — I can't do these for you:**
+1. **Sanity**: run `npx sanity init` in this folder. It'll prompt a login and let you create a
+   new project — keep it separate from your other client's Sanity account/org. Add the products
+   in the Studio (`/studio` once deployed, or `npm run dev` then visit `/studio` locally) using
+   the same three products as a starting point. Then set `NEXT_PUBLIC_SANITY_PROJECT_ID` (and
+   `NEXT_PUBLIC_SANITY_DATASET` if not `production`) in `.env.local` and in Vercel's project
+   settings. See `.env.local.example`.
+2. **Stripe**: create the account (you mentioned suggesting this to Matt already). Grab a
+   *test-mode* secret key from the Stripe dashboard (`sk_test_...`) first — test the whole buy
+   flow with Stripe's test card numbers before ever touching a live key. Set `STRIPE_SECRET_KEY`
+   in `.env.local` and Vercel. Swap to a live key (`sk_live_...`) only once you're ready to take
+   real payments.
+3. Once both are set in Vercel's environment variables, redeploy — no code changes needed, the
+   fallback behaviour switches over automatically.
