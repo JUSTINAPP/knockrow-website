@@ -10,8 +10,15 @@ import type { Image as SanityImage } from 'sanity'
 // the Studio automatically, no code changes needed.
 export const isSanityConfigured = Boolean(process.env.NEXT_PUBLIC_SANITY_PROJECT_ID)
 
+// createClient() throws immediately (even before any fetch) if projectId is
+// missing or malformed — and that constructor runs at module-load time,
+// which Next.js executes while collecting page data during `next build`.
+// Without a valid-looking fallback here, the build fails on Vercel before
+// Sanity is even configured. getSanityProducts() below never actually uses
+// this client for a real request unless isSanityConfigured is true, so the
+// placeholder is safe — it's just there to satisfy the constructor.
 export const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'placeholder',
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
   apiVersion: '2025-01-01',
   useCdn: true,
