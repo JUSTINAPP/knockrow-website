@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import type { DisplayProduct } from '@/lib/products'
+import QuantitySelect from './QuantitySelect'
 
 // Per client feedback: quantity should be a dropdown (1 bottle / 2 bottles /
 // 6 bottle case), and single/double bottles aren't sellable yet — only the
@@ -79,23 +80,16 @@ export default function ProductCard({ product: p }: { product: DisplayProduct })
         {p.tagline}
       </p>
 
-      <label className="block mb-3">
-        <span className="sr-only">Quantity</span>
-        <select
+      <div className="mb-3">
+        <QuantitySelect
           value={qty}
-          onChange={(e) => {
-            setQty(e.target.value as Quantity)
+          onChange={(v) => {
+            setQty(v)
             setBuyError(null)
           }}
-          className="w-full bg-white border border-ink/12 rounded-[3px] px-3 py-[9px] text-[12px] text-ink font-sans font-light focus:outline-none focus:border-amber-dark transition-colors"
-        >
-          {quantityOptions.map((o) => (
-            <option key={o.value} value={o.value}>
-              {o.label}
-            </option>
-          ))}
-        </select>
-      </label>
+          options={quantityOptions}
+        />
+      </div>
 
       {available ? (
         <div className="space-y-3">
